@@ -29,7 +29,6 @@ class _BankDetail_ScreenState extends State<BankDetail_Screen>
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _isMounted = true;
 
@@ -105,13 +104,14 @@ class _BankDetail_ScreenState extends State<BankDetail_Screen>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: CachedNetworkImage(
+
                 imageUrl: bankList.bankLogoUrl!.isNotEmpty ? bankList.bankLogoUrl! : '',
                 fit: BoxFit.fill,
                 errorWidget: (context, url, error) {
                   return Image.asset(AppImagePath.splashImage);
                 },
                 placeholder: (context, url) {
-                  return const CupertinoActivityIndicator(color: AppColors.defaultColor,);
+                  return const CupertinoActivityIndicator(color: AppColors.primaryTextColor,);
                 },
               ),
             ),

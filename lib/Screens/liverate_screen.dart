@@ -218,7 +218,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: referenceComexData.isEmpty ||
-                            referenceComexData.length > 3
+                        referenceComexData.length > 3
                         ? 3
                         : referenceComexData.length,
                     // crossAxisSpacing: size.width * .01,
@@ -230,7 +230,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                 ),
               ),
               SizedBox(
-                height: size.height * .005,
+                height: size.width * .02,
               ),
               buildNonLoginProductInfo(size),
               Visibility(
@@ -247,21 +247,25 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                 ),
               ),
               SizedBox(
-                height: size.height * .005,
+                height: size.width * .02,
               ),
               Flexible(
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: referenceFutureData.isEmpty ||
-                              referenceFutureData.length > 2
-                          ? 2
-                          : referenceFutureData.length,
-                      // crossAxisSpacing: size.width * .01,
-                      mainAxisExtent: size.height / 6.3,
-                      childAspectRatio:
-                          referenceFutureData.length < 2 ? 3.1 : 1.6),
+                    crossAxisCount: referenceFutureData.isEmpty ||
+                        referenceFutureData.length > 2
+                        ? 2
+                        : referenceFutureData.length,
+                    crossAxisSpacing: size.width * .02,
+                    // childAspectRatio: size.width / (size.height / 3.1),
+                    childAspectRatio: referenceFutureData.length < 2
+                        ? 2.7
+                        : size.width == 0
+                        ? 1
+                        : size.width / 260,
+                  ),
                   itemBuilder: (builder, index) {
                     return buildFutureContainers(size, index);
                   },
@@ -269,22 +273,25 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                 ),
               ),
               SizedBox(
-                height: size.height * .001,
+                height: size.width * .02,
               ),
               Flexible(
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: referenceNextData.isEmpty ||
-                              referenceNextData.length > 2
-                          ? 2
-                          : referenceNextData.length,
-                      // crossAxisSpacing: size.width * .01,
-
-                      mainAxisExtent: size.height / 6.3,
-                      childAspectRatio:
-                          referenceNextData.length < 2 ? 3.1 : 1.6),
+                    crossAxisCount: referenceNextData.isEmpty ||
+                        referenceNextData.length > 2
+                        ? 2
+                        : referenceNextData.length,
+                    crossAxisSpacing: size.width * .02,
+                    // childAspectRatio: size.width / (size.height / 3.1),
+                    childAspectRatio: referenceNextData.length < 2
+                        ? 2.7
+                        : size.width == 0
+                        ? 1
+                        : size.width / 260,
+                  ),
                   itemBuilder: (builder, index) {
                     return buildNextContainers(size, index);
                   },
@@ -313,69 +320,77 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                   // color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                padding: const EdgeInsets.only(left: 12.0, right: 0.0),
+
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
                       width: size.width * .33,
-                      child: const CustomText(
-                        text: 'PRODUCT',
-                        size: 15.0,
-                        fontWeight: FontWeight.bold,
-                        textColor: AppColors.textColor,
-                        align: TextAlign.start,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: const CustomText(
+                          text: 'PRODUCT',
+                          size: 15.0,
+                          fontWeight: FontWeight.bold,
+                          textColor: AppColors.textColor,
+                          align: TextAlign.start,
+                        ),
                       ),
                     ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SizedBox(
-                            width: size.width / 5,
-                            child: Visibility(
-                              visible: clientHeadersDetail.isBuy != null &&
-                                  clientHeadersDetail.isBuy!,
-                              child: const CustomText(
-                                text: 'BUY',
-                                size: 15.0,
-                                fontWeight: FontWeight.bold,
-                                textColor: AppColors.textColor,
-                                align: TextAlign.center,
-                              ),
-                            ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: SizedBox(
+                        // width: size.width / 5,
+                        child: Visibility(
+                          visible: clientHeadersDetail.isBuy != null &&
+                              clientHeadersDetail.isBuy!,
+                          child: const CustomText(
+                            text: 'BUY',
+                            size: 15.0,
+                            fontWeight: FontWeight.bold,
+                            textColor: AppColors.textColor,
+                            align: TextAlign.center,
                           ),
-                          SizedBox(
-                            width: size.width / 5,
-                            child: Visibility(
-                              visible: clientHeadersDetail.isSell != null &&
-                                  clientHeadersDetail.isSell!,
-                              child: const CustomText(
-                                text: 'SELL',
-                                size: 15.0,
-                                fontWeight: FontWeight.bold,
-                                textColor: AppColors.textColor,
-                                align: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: size.width / 5,
-                            child: Visibility(
-                              visible: clientHeadersDetail.isSell != null &&
-                                  clientHeadersDetail.isSell!,
-                              child: const CustomText(
-                                text: 'T-CHANGE',
-                                size: 12.0,
-                                fontWeight: FontWeight.bold,
-                                textColor: AppColors.textColor,
-                                align: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    )
+                    ),
+                    Flexible(
+                      flex: 1,
+                      fit: FlexFit.tight,
+                      child: SizedBox(
+                        // width: size.width / 5,
+                        child: Visibility(
+                          visible: clientHeadersDetail.isSell != null &&
+                              clientHeadersDetail.isSell!,
+                          child: const CustomText(
+                            text: 'SELL',
+                            size: 15.0,
+                            fontWeight: FontWeight.bold,
+                            textColor: AppColors.textColor,
+                            align: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                    // Flexible(
+                    //   flex: 1,
+                    //   fit: FlexFit.tight,
+                    //   child: SizedBox(
+                    //     // width: size.width / 5,
+                    //     child: Visibility(
+                    //       visible: clientHeadersDetail.isSell != null &&
+                    //           clientHeadersDetail.isSell!,
+                    //       child: const CustomText(
+                    //         text: 'T-CHANGE',
+                    //         size: 12.0,
+                    //         fontWeight: FontWeight.bold,
+                    //         textColor: AppColors.textColor,
+                    //         align: TextAlign.center,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
                   ],
                 ),
               )
@@ -400,7 +415,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
             ? 0.0
             : double.parse(referenceFutureData[index].ask!);
 
-        setFutureAskLableColor(
+        setFutureAskLabelColor(
             oldAskRate, newAskRate, referenceFutureData[index]);
 
         var oldBidRate = referenceFutureDataOldChange[index].bid!.isEmpty
@@ -410,7 +425,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
             ? 0.0
             : double.parse(referenceFutureData[index].bid!);
 
-        setFutureBidLableColor(
+        setFutureBidLabelColor(
             oldBidRate, newBidRate, referenceFutureData[index]);
       }
     }
@@ -420,159 +435,165 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
 
     return referenceFutureData.isEmpty
         ? Container()
-        : Card(
-            color: AppColors.defaultColor,
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: AppColors.secondaryColor, width: 1.0),
-              borderRadius: BorderRadius.circular(
-                5.0,
+        :
+    Container(
+      width: size.width,
+      decoration:
+
+      ShapeDecoration(
+        color: AppColors.defaultColor,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: AppColors.primaryColor, width: 1.0),
+          // Border added here
+          borderRadius: BorderRadius.circular(5),
+        ),
+        shadows: const [AppColors.boxShadow],
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: size.width,
+            decoration: BoxDecoration(
+              // color: AppColors.primaryColor,
+                gradient: AppColors.primaryGradient
+              // borderRadius: const BorderRadius.only(
+              //   topLeft: Radius.circular(0.0),
+              //   topRight: Radius.circular(0.0),
+              // ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: CustomText(
+                text: referenceFutureData[index]
+                    .symbolName
+                    ?.toUpperCase()
+                    .trim() ??
+                    '',
+                fontWeight: FontWeight.bold,
+                textColor: AppColors.textColor,
+                size: 14.0,
+                align: TextAlign.center,
               ),
             ),
-            // shadowColor: AppColors.hintColor,
-            // shape: RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.circular(8.0),
-            // ),
+          ),
+          Expanded(
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    // color: AppColors.textColorLight,
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(5.0),
-                      topRight: Radius.circular(5.0),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: CustomText(
-                      text: referenceFutureData[index]
-                              .symbolName
-                              ?.toUpperCase() ??
-                          '',
-                      fontWeight: FontWeight.bold,
-                      textColor: AppColors.textColor,
-                      size: 14.0,
-                      align: TextAlign.center,
-                    ),
-                  ),
-                ),
-                Expanded(
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: size.width / 4.5,
-                                child: CustomText(
+                          Flexible(
+                            flex: 1,
+                            fit: FlexFit.tight,
+                            child: Column(
+                              children: [
+                                CustomText(
                                   align: TextAlign.center,
                                   text: 'BUY',
                                   fontWeight: FontWeight.bold,
-                                  textColor: AppColors.primaryTextColor,
+                                  textColor: AppColors.textColor,
                                   size: 14.0,
                                 ),
-                              ),
-                              Container(
-                                  // height: 30.0,
-                                  width: size.width / 4.5,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.transparent,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(7),
-                                    ),
-                                  ),
-                                  child: CustomText(
-                                    text: referenceFutureData[index].bid ?? '',
-                                    fontWeight: FontWeight.bold,
-                                    textColor:
-                                        referenceFutureData[index].bidBGColor,
-                                    size: 17.0,
-                                  )),
-                            ],
+                                CustomText(
+                                  text: referenceFutureData[index].bid ??
+                                      '',
+                                  fontWeight: FontWeight.bold,
+                                  textColor: referenceFutureData[index]
+                                      .bidBGColor,
+                                  size: 17.0,
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: size.width / 4.5,
-                                child: CustomText(
+                          Flexible(
+                            flex: 1,
+                            fit: FlexFit.tight,
+                            child: Column(
+                              children: [
+                                CustomText(
                                   align: TextAlign.center,
                                   text: 'SELL',
                                   fontWeight: FontWeight.bold,
-                                  textColor: AppColors.primaryTextColor,
+                                  textColor: AppColors.textColor,
                                   size: 14.0,
                                 ),
-                              ),
-                              Container(
-                                  // height: 30.0,
-                                  width: size.width / 4.5,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.transparent,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(7),
-                                    ),
-                                  ),
-                                  child: CustomText(
-                                    text: referenceFutureData[index].ask ?? '',
-                                    fontWeight: FontWeight.bold,
-                                    textColor:
-                                        referenceFutureData[index].askBGColor,
-                                    size: 17.0,
-                                  )),
-                            ],
+                                CustomText(
+                                  text: referenceFutureData[index].ask ??
+                                      '',
+                                  fontWeight: FontWeight.bold,
+                                  textColor: referenceFutureData[index]
+                                      .askBGColor,
+                                  size: 17.0,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
+                    ],
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
+                  child: Column(
+                    children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 5.0),
+                        padding:
+                        const EdgeInsets.only(left: 5.0, right: 5.0),
                         child: const Divider(
-                          color: AppColors.secondaryColor,
+                          color: AppColors.primaryColor,
                           thickness: 1,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                              // height: 30.0,
-                              width: size.width / 4.5,
-                              alignment: Alignment.center,
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              fit: FlexFit.tight,
                               child: CustomText(
                                 text:
-                                    'L : ${referenceFutureData[index].low!.isEmpty ? '' : referenceFutureData[index].low!}',
+                                'L : ${referenceFutureData[index].low!.isEmpty ? '' : referenceFutureData[index].low!}',
                                 fontWeight: FontWeight.bold,
                                 textColor: AppColors.textColor,
+                                align: TextAlign.center,
                                 size: 12.0,
-                              )),
-                          Container(
-                              // height: 30.0,
-                              width: size.width / 4.5,
-                              alignment: Alignment.center,
+                              ),
+                            ),
+
+                            // SizedBox(
+                            //   width: 10,
+                            // ),
+                            Flexible(
+                              flex: 1,
+                              fit: FlexFit.tight,
                               child: CustomText(
                                 text:
-                                    'H : ${referenceFutureData[index].high!.isEmpty ? '' : referenceFutureData[index].high!}',
+                                'H : ${referenceFutureData[index].high!.isEmpty ? '' : referenceFutureData[index].high!}',
                                 fontWeight: FontWeight.bold,
                                 textColor: AppColors.textColor,
+                                align: TextAlign.center,
                                 size: 12.0,
-                              )),
-                        ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-          );
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildNextContainers(Size size, int index) {
@@ -585,7 +606,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
             ? 0.0
             : double.parse(referenceNextData[index].ask!);
 
-        setFutureAskLableColor(
+        setFutureAskLabelColor(
             oldAskRate, newAskRate, referenceNextData[index]);
 
         var oldBidRate = referenceNextDataOldChange[index].bid!.isEmpty
@@ -595,7 +616,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
             ? 0.0
             : double.parse(referenceNextData[index].bid!);
 
-        setFutureBidLableColor(
+        setFutureBidLabelColor(
             oldBidRate, newBidRate, referenceNextData[index]);
       }
     }
@@ -606,158 +627,168 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
 
     return referenceNextData.isEmpty
         ? Container()
-        : Card(
-            color: AppColors.defaultColor,
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: AppColors.secondaryColor, width: 1.0),
-              borderRadius: BorderRadius.circular(
-                5.0,
+        :
+    Container(
+      // height: 100,
+      width: size.width,
+      decoration: ShapeDecoration(
+        color: AppColors.defaultColor,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: AppColors.primaryColor, width: 1.0),
+          // Border added here
+          borderRadius: BorderRadius.circular(5),
+        ),
+        shadows: const [AppColors.boxShadow],
+      ),
+
+      child: Column(
+        children: [
+          Container(
+            width: size.width,
+            decoration: BoxDecoration(
+              // color: AppColors.primaryColor,
+
+              gradient: AppColors.primaryGradient,
+              // borderRadius: const BorderRadius.only(
+              //   topLeft: Radius.circular(5.0),
+              //   topRight: Radius.circular(5.0),
+              // ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: CustomText(
+                text: referenceNextData[index]
+                    .symbolName
+                    ?.toUpperCase()
+                    .trim() ??
+                    '',
+                fontWeight: FontWeight.bold,
+                textColor: AppColors.textColor,
+                size: 14.0,
+                align: TextAlign.center,
               ),
             ),
-            // shadowColor: AppColors.hintColor,
-            // shape: RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.circular(8.0),
-            // ),
+          ),
+          Expanded(
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    // color: AppColors.textColorLight,
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(5.0),
-                      topRight: Radius.circular(5.0),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: CustomText(
-                      text:
-                          referenceNextData[index].symbolName?.toUpperCase() ??
-                              '',
-                      fontWeight: FontWeight.bold,
-                      textColor: AppColors.textColor,
-                      size: 14.0,
-                      align: TextAlign.center,
-                    ),
-                  ),
-                ),
-                Expanded(
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
                   child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: size.width / 4.5,
-                                child: CustomText(
+                          Flexible(
+                            flex: 1,
+                            fit: FlexFit.tight,
+                            child: Column(
+                              children: [
+                                CustomText(
                                   align: TextAlign.center,
                                   text: 'BUY',
                                   fontWeight: FontWeight.bold,
-                                  textColor: AppColors.primaryTextColor,
+                                  textColor: AppColors.textColor,
                                   size: 14.0,
                                 ),
-                              ),
-                              Container(
-                                  // height: 30.0,
-                                  width: size.width / 4.5,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.transparent,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(7),
-                                    ),
-                                  ),
-                                  child: CustomText(
-                                    text: referenceNextData[index].bid ?? '',
-                                    fontWeight: FontWeight.bold,
-                                    textColor:
-                                        referenceNextData[index].bidBGColor,
-                                    size: 17.0,
-                                  )),
-                            ],
+                                CustomText(
+                                  text:
+                                  referenceNextData[index].bid ?? '',
+                                  fontWeight: FontWeight.bold,
+                                  textColor:
+                                  referenceNextData[index].bidBGColor,
+                                  size: 17.0,
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: size.width / 4.5,
-                                child: CustomText(
+                          Flexible(
+                            flex: 1,
+                            fit: FlexFit.tight,
+                            child: Column(
+                              children: [
+                                CustomText(
                                   align: TextAlign.center,
                                   text: 'SELL',
                                   fontWeight: FontWeight.bold,
-                                  textColor: AppColors.primaryTextColor,
+                                  textColor: AppColors.textColor,
                                   size: 14.0,
                                 ),
-                              ),
-                              Container(
-                                  // height: 30.0,
-                                  width: size.width / 4.5,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.transparent,
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(7),
-                                    ),
-                                  ),
-                                  child: CustomText(
-                                    text: referenceNextData[index].ask ?? '',
-                                    fontWeight: FontWeight.bold,
-                                    textColor:
-                                        referenceNextData[index].askBGColor,
-                                    size: 17.0,
-                                  )),
-                            ],
+                                CustomText(
+                                  text:
+                                  referenceNextData[index].ask ?? '',
+                                  fontWeight: FontWeight.bold,
+                                  textColor:
+                                  referenceNextData[index].askBGColor,
+                                  size: 17.0,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
+                    ],
+                  ),
+                ),
+                Flexible(
+                  flex: 1,
+                  fit: FlexFit.tight,
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 5.0),
+                        padding:
+                        const EdgeInsets.only(left: 5.0, right: 5.0),
                         child: const Divider(
-                          color: AppColors.secondaryColor,
+                          color: AppColors.primaryColor,
                           thickness: 1,
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                              // height: 30.0,
-                              width: size.width / 4.5,
-                              alignment: Alignment.center,
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              flex: 1,
+                              fit: FlexFit.tight,
                               child: CustomText(
                                 text:
-                                    'L : ${referenceNextData[index].low!.isEmpty ? '' : referenceNextData[index].low!}',
+                                'L : ${referenceNextData[index].low!.isEmpty ? '' : referenceNextData[index].low!}',
                                 fontWeight: FontWeight.bold,
                                 textColor: AppColors.textColor,
+                                align: TextAlign.center,
                                 size: 12.0,
-                              )),
-                          Container(
-                              // height: 30.0,
-                              width: size.width / 4.5,
-                              alignment: Alignment.center,
+                              ),
+                            ),
+                            // SizedBox(
+                            //   width: 10,
+                            // ),
+                            Flexible(
+                              flex: 1,
+                              fit: FlexFit.tight,
                               child: CustomText(
                                 text:
-                                    'H : ${referenceNextData[index].high!.isEmpty ? '' : referenceNextData[index].high!}',
+                                'H : ${referenceNextData[index].high!.isEmpty ? '' : referenceNextData[index].high!}',
                                 fontWeight: FontWeight.bold,
+                                align: TextAlign.center,
                                 textColor: AppColors.textColor,
                                 size: 12.0,
-                              )),
-                        ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-          );
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildComexContainers(Size size, int index) {
@@ -770,7 +801,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
             ? 0.0
             : double.parse(referenceComexData[index].ask!);
 
-        setAskLableColor(oldAskRate, newAskRate, referenceComexData[index]);
+        setAskLabelColor(oldAskRate, newAskRate, referenceComexData[index]);
 
         var oldBidRate = referenceComexDataOldChange[index].bid!.isEmpty
             ? 0.0
@@ -779,7 +810,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
             ? 0.0
             : double.parse(referenceComexData[index].bid!);
 
-        setBidLableColor(oldBidRate, newBidRate, referenceComexData[index]);
+        setBidLabelColor(oldBidRate, newBidRate, referenceComexData[index]);
       }
     }
     if (referenceComexData.length - 1 == index) {
@@ -788,103 +819,115 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
 
     return referenceComexData.isEmpty
         ? Container()
-        : Card(
-            // shadowColor: referenceComexData[index].askBGColor,
-            color: AppColors.defaultColor,
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: AppColors.secondaryColor, width: 1.0),
-              borderRadius: BorderRadius.circular(
-                5.0,
+        :
+    Card(
+      // shadowColor: referenceComexData[index].askBGColor,
+      color: AppColors.defaultColor,
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: AppColors.primaryColor, width: 1.0),
+        borderRadius: BorderRadius.circular(
+          5.0,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: size.width,
+            decoration: BoxDecoration(
+              // color: AppColors.primaryColor,
+              gradient: AppColors.primaryGradient,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(5.0),
+                topRight: Radius.circular(5.0),
               ),
             ),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: CustomText(
+                text: referenceComexData[index].symbolName!.trim() ?? '',
+                fontWeight: FontWeight.bold,
+                textColor: AppColors.textColor,
+                size: 14.0,
+                align: TextAlign.center,
+              ),
+            ),
+          ),
+          Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    // color: AppColors.defaultColor,
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(5.0),
-                      topRight: Radius.circular(5.0),
+                Expanded(
+                  child: Container(
+                    // height: 30.0,
+                    width: size.width / 4.5,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppColors.transparent,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(7),
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: CustomText(
-                      text: referenceComexData[index].symbolName ?? '',
+                    child:
+                    // AnimatedFlipCounter(
+                    //   value:double.parse(referenceComexData[index].ask ?? ''),
+                    //   fractionDigits: 2, // decimal precision
+                    //   textStyle: TextStyle(
+                    //     letterSpacing: 0.2,
+                    //     fontSize: 17,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: referenceComexData[index].askBGColor,
+                    //   ),
+                    // )
+                    CustomText(
+                      text: referenceComexData[index].ask ?? '',
                       fontWeight: FontWeight.bold,
-                      textColor: AppColors.textColor,
-                      size: 14.0,
-                      align: TextAlign.center,
+                      textColor: referenceComexData[index].askBGColor,
+                      size: 17.0,
+                      align: TextAlign.start,
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          // height: 30.0,
-                          width: size.width / 4.5,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: AppColors.transparent,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(7),
-                            ),
-                          ),
-                          child: CustomText(
-                            text: referenceComexData[index].ask ?? '',
+                Column(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Divider(
+                      color: AppColors.primaryColor,
+                      thickness: 1,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomText(
+                            text:
+                            'L:${referenceComexData[index].low!.isEmpty ? '' : referenceComexData[index].low!}',
                             fontWeight: FontWeight.bold,
-                            textColor: referenceComexData[index].askBGColor,
-                            size: 17.0,
+                            textColor: AppColors.textColor,
+                            size: 10.5,
                             align: TextAlign.start,
                           ),
-                        ),
-                      ),
-                      Column(
-                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          const Divider(
-                            color: AppColors.secondaryColor,
-                            thickness: 1,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomText(
-                                  text:
-                                      'L:${referenceComexData[index].low!.isEmpty ? '' : referenceComexData[index].low!}',
-                                  fontWeight: FontWeight.bold,
-                                  textColor: AppColors.textColor,
-                                  size: 10.5,
-                                  align: TextAlign.start,
-                                ),
-                                CustomText(
-                                  text:
-                                      '/H:${referenceComexData[index].high!.isEmpty ? '' : referenceComexData[index].high!}',
-                                  fontWeight: FontWeight.bold,
-                                  textColor: AppColors.textColor,
-                                  size: 10.5,
-                                  align: TextAlign.start,
-                                ),
-                              ],
-                            ),
+                          CustomText(
+                            text:
+                            '/H:${referenceComexData[index].high!.isEmpty ? '' : referenceComexData[index].high!}',
+                            fontWeight: FontWeight.bold,
+                            textColor: AppColors.textColor,
+                            size: 10.5,
+                            align: TextAlign.start,
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          );
+          ),
+        ],
+      ),
+    );
   }
 
   Widget buildProductContainer(Size size, int index) {
@@ -893,8 +936,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
         if (liveRatesDetailOldChange.length == liveRatesDetailMaster.length) {
           if (liveRatesDetailOldChange[index].ask == '-' ||
               liveRatesDetailOldChange[index].ask == '--') {
-            liveRatesDetailMaster[index].askBGColor = AppColors.defaultColor;
-            liveRatesDetailMaster[index].askTextColor = AppColors.defaultColor;
+            liveRatesDetailMaster[index].askBGColor = AppColors.textColor;
+            liveRatesDetailMaster[index].askTextColor = AppColors.textColor;
           } else {
             dynamic oldAskRate = liveRatesDetailOldChange[index].ask!.isEmpty
                 ? 0.0
@@ -907,10 +950,11 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                 oldAskRate, newAskRate, liveRatesDetailMaster[index]);
           }
 
+
           if (liveRatesDetailOldChange[index].bid == '-' ||
               liveRatesDetailOldChange[index].bid == '--') {
-            liveRatesDetailMaster[index].bidBGColor = AppColors.defaultColor;
-            liveRatesDetailMaster[index].bidTextColor = AppColors.defaultColor;
+            liveRatesDetailMaster[index].bidBGColor = AppColors.textColor;
+            liveRatesDetailMaster[index].bidTextColor = AppColors.textColor;
             // setLabelColorsMainProduct('--', '--', liveRatesDetailMaster[index]);
           } else {
             dynamic oldBidRate = liveRatesDetailOldChange[index].bid!.isEmpty
@@ -923,23 +967,23 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
             setLabelColorsBidMainProduct(
                 oldBidRate, newBidRate, liveRatesDetailMaster[index]);
           }
-          if (liveRatesDetailOldChange[index].diff == '-' ||
-              liveRatesDetailOldChange[index].diff == '--') {
-            liveRatesDetailMaster[index].diffBGColor = AppColors.defaultColor;
-            liveRatesDetailMaster[index].diffTextColor = AppColors.defaultColor;
-            // setLabelColorsMainProduct('--', '--', liveRatesDetailMaster[index]);
-          } else {
-            dynamic oldBidRate = liveRatesDetailOldChange[index].diff!.isEmpty
-                ? 0.0
-                : double.parse(liveRatesDetailOldChange[index].diff!);
-            dynamic newBidRate = liveRatesDetailMaster[index].diff!.isEmpty
-                ? 0.0
-                : double.parse(liveRatesDetailMaster[index].diff!);
 
-            setLabelColorsDiffMainProduct(
-                oldBidRate, newBidRate, liveRatesDetailMaster[index]);
-          }
-
+          // if (liveRatesDetailOldChange[index].diff == '-' ||
+          //     liveRatesDetailOldChange[index].diff == '--') {
+          //   liveRatesDetailMaster[index].diffBGColor = AppColors.defaultColor;
+          //   liveRatesDetailMaster[index].diffTextColor = AppColors.defaultColor;
+          //   // setLabelColorsMainProduct('--', '--', liveRatesDetailMaster[index]);
+          // } else {
+          //   dynamic oldBidRate = liveRatesDetailOldChange[index].diff!.isEmpty
+          //       ? 0.0
+          //       : double.parse(liveRatesDetailOldChange[index].diff!);
+          //   dynamic newBidRate = liveRatesDetailMaster[index].diff!.isEmpty
+          //       ? 0.0
+          //       : double.parse(liveRatesDetailMaster[index].diff!);
+          //
+          //   setLabelColorsDiffMainProduct(
+          //       oldBidRate, newBidRate, liveRatesDetailMaster[index]);
+          // }
         }
       }
     } catch (e) {
@@ -954,38 +998,28 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
         ? SizedBox()
         : Padding(
             padding: const EdgeInsets.only(
-                top: 6.0, left: 0.0, right: 0.0, bottom: 0.0),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 4.0,
-                right: 4.0,
-              ),
-              child: Container(
-                height: 50.0,
-                decoration: ShapeDecoration(
-                  color: AppColors.bg,
-                  shape: RoundedRectangleBorder(
-                    side:
-                        BorderSide(color: AppColors.secondaryColor, width: 1.0),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  // shadows: const [AppColors.boxShadow],
+                top: 5.0, left: 0.0, right: 0.0, bottom: 0.0),
+            child: Container(
+              height: 55.0,
+              decoration: ShapeDecoration(
+                color: AppColors.bg,
+                shape: RoundedRectangleBorder(
+                  side:BorderSide(color: AppColors.secondaryColor, width: 1.0),
+                  borderRadius: BorderRadius.circular(5),
                 ),
-                child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      // child: Image.asset(
-                      //   AppImagePath.greencolum,
-                      // ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          width: size.width * .33,
+                // shadows: const [AppColors.boxShadow],
+              ),
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: size.width * .33,
+                        child: Padding(
+
+                          padding: const EdgeInsets.only(left: 8.0),
                           child: CustomText(
                             text: liveRatesDetailMaster[index]
                                 .name!
@@ -998,147 +1032,146 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                             noOfLines: 2,
                           ),
                         ),
-                        // SizedBox(
-                        //   width: size.width * .3,
-                        //   child: CustomText(
-                        //     text:
-                        //     liveRateReferenceDetail[0].time!.trim()!=null?'Time-${liveRateReferenceDetail[0].time!.trim()}':'',
-                        //     size: 10.5,
-                        //     fontWeight: FontWeight.bold,
-                        //     textColor: AppColors.secondaryTextColor,
-                        //     align: TextAlign.start,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                    Expanded(
-                      child: Row(
+                      ),
+                      // SizedBox(
+                      //   width: size.width * .3,
+                      //   child: CustomText(
+                      //     text:
+                      //     liveRateReferenceDetail[0].time!.trim()!=null?'Time-${liveRateReferenceDetail[0].time!.trim()}':'',
+                      //     size: 10.5,
+                      //     fontWeight: FontWeight.bold,
+                      //     textColor: AppColors.secondaryTextColor,
+                      //     align: TextAlign.start,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
+                    child: SizedBox(
+                      // width: size.width / 5,
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          SizedBox(
-                            width: size.width / 5,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Visibility(
-                                  visible: clientHeadersDetail.isBuy != null &&
-                                      clientHeadersDetail.isBuy!,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10.0, right: 10.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(3),
-                                          color: AppColors.transparent),
-                                      padding: const EdgeInsets.all(3.0),
-                                      child: CustomText(
-                                          text:
-                                              '${liveRatesDetailMaster[index].bid}',
-                                          size: 14,
-                                          fontWeight: FontWeight.bold,
-                                          textColor:
-                                              liveRatesDetailMaster[index]
-                                                  .bidBGColor),
-                                    ),
-                                  ),
-                                ),
-                                Visibility(
-                                  visible: clientHeadersDetail.isLow != null &&
-                                      clientHeadersDetail.isLow!,
-                                  child: CustomText(
+                          Visibility(
+                            visible: clientHeadersDetail.isBuy != null &&
+                                clientHeadersDetail.isBuy!,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10.0, right: 10.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.circular(3),
+                                    color: AppColors.transparent),
+                                padding: const EdgeInsets.all(3.0),
+                                child: CustomText(
                                     text:
-                                        'L-${liveRatesDetailMaster[index].low}',
-                                    size: 13.5,
-                                    fontWeight: FontWeight.normal,
-                                    textColor: AppColors.red,
-                                  ),
-                                ),
-                              ],
+                                        '${liveRatesDetailMaster[index].bid}',
+                                    size: 15,
+                                    fontWeight: FontWeight.bold,
+                                    textColor:
+                                        liveRatesDetailMaster[index]
+                                            .bidBGColor),
+                              ),
                             ),
                           ),
-                          SizedBox(
-                            width: size.width / 5,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Visibility(
-                                  visible: clientHeadersDetail.isSell != null &&
-                                      clientHeadersDetail.isSell!,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10.0, right: 10.0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(3),
-                                        color: AppColors.transparent,
-                                      ),
-                                      padding: const EdgeInsets.all(3.0),
-                                      child: CustomText(
-                                        text:
-                                            '${liveRatesDetailMaster[index].ask}',
-                                        size: 14,
-                                        fontWeight: FontWeight.bold,
-                                        textColor: liveRatesDetailMaster[index]
-                                            .askBGColor,
-                                        align: TextAlign.start,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Visibility(
-                                  visible: clientHeadersDetail.isHigh != null &&
-                                      clientHeadersDetail.isHigh!,
-                                  child: CustomText(
-                                    text:
-                                        'H-${liveRatesDetailMaster[index].high}',
-                                    size: 13.5,
-                                    textColor: AppColors.green,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: size.width / 5,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10.0, right: 10.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(3),
-                                      color: AppColors.transparent,
-                                    ),
-                                    padding: const EdgeInsets.all(3.0),
-                                    child: CustomText(
-                                      text:
-                                          '${liveRatesDetailMaster[index].diff}',
-                                      size: 12,
-                                      fontWeight: FontWeight.bold,
-                                      textColor: liveRatesDetailMaster[index]
-                                          .diffBGColor,
-                                      align: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          Visibility(
+                            visible: clientHeadersDetail.isLow != null &&
+                                clientHeadersDetail.isLow!,
+                            child: CustomText(
+                              text:
+                                  'L-${liveRatesDetailMaster[index].low}',
+                              size: 13.5,
+                              fontWeight: FontWeight.normal,
+                              textColor: AppColors.red,
                             ),
                           ),
                         ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 1,
+                    fit: FlexFit.tight,
+                    child: SizedBox(
+                      // width: size.width / 5,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Visibility(
+                            visible: clientHeadersDetail.isSell != null &&
+                                clientHeadersDetail.isSell!,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 10.0, right: 10.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3),
+                                  color: AppColors.transparent,
+                                ),
+                                padding: const EdgeInsets.all(3.0),
+                                child: CustomText(
+                                  text:
+                                      '${liveRatesDetailMaster[index].ask}',
+                                  size: 15,
+                                  fontWeight: FontWeight.bold,
+                                  textColor: liveRatesDetailMaster[index]
+                                      .askBGColor,
+                                  align: TextAlign.start,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: clientHeadersDetail.isHigh != null &&
+                                clientHeadersDetail.isHigh!,
+                            child: CustomText(
+                              text:
+                                  'H-${liveRatesDetailMaster[index].high}',
+                              size: 13.5,
+                              textColor: AppColors.green,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  // Flexible(
+                  //   flex: 1,
+                  //   fit: FlexFit.tight,
+                  //   child: SizedBox(
+                  //     // width: size.width / 5,
+                  //     child: Padding(
+                  //       padding: const EdgeInsets.only(
+                  //           left: 10.0, right: 10.0),
+                  //       child: Container(
+                  //         decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(3),
+                  //           color: AppColors.transparent,
+                  //         ),
+                  //         padding: const EdgeInsets.all(3.0),
+                  //         child: CustomText(
+                  //           text: '${liveRatesDetailMaster[index].diff}',
+                  //           size: 13,
+                  //           fontWeight: FontWeight.bold,
+                  //           textColor:
+                  //               liveRatesDetailMaster[index].diffBGColor,
+                  //           align: TextAlign.center,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // )
+                ],
               ),
             ),
           );
   }
 
-  setAskLableColor(dynamic oldRate, dynamic newRate, model) {
+  setAskLabelColor(dynamic oldRate, dynamic newRate, model) {
     if (oldRate < newRate) {
       model.askBGColor = AppColors.green;
       model.askTextColor = AppColors.defaultColor;
@@ -1151,7 +1184,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
     }
   }
 
-  setFutureAskLableColor(dynamic oldRate, dynamic newRate, model) {
+  setFutureAskLabelColor(dynamic oldRate, dynamic newRate, model) {
     if (oldRate < newRate) {
       model.askBGColor = AppColors.green;
       model.askTextColor = AppColors.defaultColor;
@@ -1164,7 +1197,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
     }
   }
 
-  setBidLableColor(dynamic oldRate, dynamic newRate, model) {
+  setBidLabelColor(dynamic oldRate, dynamic newRate, model) {
     if (oldRate < newRate) {
       model.bidBGColor = AppColors.green;
       model.bidTextColor = AppColors.defaultColor;
@@ -1177,7 +1210,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
     }
   }
 
-  setFutureBidLableColor(dynamic oldRate, dynamic newRate, model) {
+  setFutureBidLabelColor(dynamic oldRate, dynamic newRate, model) {
     if (oldRate < newRate) {
       model.bidBGColor = AppColors.green;
       model.bidTextColor = AppColors.defaultColor;

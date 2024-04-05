@@ -242,7 +242,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         debugPrint('appLifeCycleState detached');
         break;
       case AppLifecycleState.hidden:
-      // TODO: Handle this case.
     }
   }
 
@@ -354,17 +353,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               // automaticallyImplyLeading: false,
               toolbarHeight: 60,
 
-                // flexibleSpace: Container(
+              // flexibleSpace: Container(
               //   decoration:
               //       BoxDecoration(gradient: AppColors.secondaryGradient),
               // ),
               // elevation: 5.0,
               iconTheme: const IconThemeData(color: AppColors.primaryColor),
-              title: Image.asset(
-                AppImagePath.headerLogo,
-                  height:
-                  AppBar().preferredSize.height * 0.9
-              ),
+              title: Image.asset(AppImagePath.headerLogo,
+                  height: AppBar().preferredSize.height * 0.9),
               centerTitle: true,
               leading: IconButton(
                 onPressed: _handleMenuButtonPressed,
@@ -400,8 +396,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             ),
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
-                // gradient: AppColors.secondaryGradient,
-              ),
+                  // gradient: AppColors.secondaryGradient,
+                  ),
               child: BottomNavigationBar(
                 currentIndex: selectedIndex,
                 showUnselectedLabels: true,
@@ -531,7 +527,23 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             bottom: bottom1,
             child: GestureDetector(
               onTap: () {
-                showCallDialog();
+                clientHeaderData.number1 != null &&
+                    clientHeaderData.number1!.trim().isNotEmpty ||
+                    clientHeaderData.number2 != null &&
+                        clientHeaderData.number2!.trim().isNotEmpty ||
+                    clientHeaderData.number3 != null &&
+                        clientHeaderData.number3!.trim().isNotEmpty ||
+                    clientHeaderData.number4 != null &&
+                        clientHeaderData.number4!.trim().isNotEmpty ||
+                    clientHeaderData.number5 != null &&
+                        clientHeaderData.number5!.trim().isNotEmpty ||
+                    clientHeaderData.number6 != null &&
+                        clientHeaderData.number6!.trim().isNotEmpty ||
+                    clientHeaderData.number7 != null &&
+                        clientHeaderData.number7!.trim().isNotEmpty
+                    ? showCallDialog()
+                    : Functions.showToast('Booking numbers are not available');
+                // showCallDialog();
               },
               onPanUpdate: (dragDetails) {
                 setState(() {
@@ -543,9 +555,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 // heroTag: 'call1',
                 padding: const EdgeInsets.all(10.0),
                 decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    // color: AppColors.primaryColor,
-                    gradient: AppColors.primaryGradient),
+                  shape: BoxShape.circle,
+                  color: AppColors.primaryColor,
+                  // gradient: AppColors.primaryGradient
+                ),
                 child: const Icon(
                   Icons.call,
                   color: AppColors.defaultColor,
@@ -721,16 +734,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                   ? AppColors.primaryColor
                                   : AppColors.primaryColor,
                               fontWeight: FontWeight.normal)
-                          // Text(
-                          //   textScaleFactor: 1.0,
-                          //   'Updates',
-                          //   style: TextStyle(
-                          //     color: selectedIndex == 2
-                          //         ? AppColor.primaryColor
-                          //         : AppColor.primaryColor,
-                          //     fontSize: 16.0,
-                          //   ),
-                          // ),
+
                           ),
                     ),
                     // Container(
@@ -869,6 +873,25 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                   : AppColors.primaryColor,
                               fontWeight: FontWeight.normal)),
                     ),
+                    ListTile(
+                        minLeadingWidth: 10,
+                        onTap: () async {
+                          final Uri url = Uri.parse('https://thakurji.magnumdigitalsolutions.in/logins');
+                             if (!await launchUrl(url)) {
+                                  throw Exception('Could not launch https://thakurji.magnumdigitalsolutions.in/logins');
+                              }
+                          closeDrawer();
+                        },
+                        leading: Icon(
+                          Icons.diamond_rounded,
+                          color: AppColors.primaryColor,
+                          size: 24,
+                        ),
+                        title: CustomText(
+                            text: 'Gem Stone',
+                            size: 16,
+                            textColor: AppColors.primaryColor,
+                            fontWeight: FontWeight.normal)),
                     // Container(
                     //   decoration: ShapeDecoration(
                     //     color: selectedIndex == 7
@@ -908,7 +931,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         minLeadingWidth: 10,
                         onTap: () async {
                           Platform.isIOS
-                              ? Share.share(Constants.iOSAppRedirect)
+                              ? Share.share(Constants.iOSAppRedirect,
+                              sharePositionOrigin: Rect.fromPoints(
+                              const Offset(2, 2), const Offset(3, 3)))
                               : Share.share(Constants.androidAppStoreRedirect);
                         },
                         leading: Icon(
@@ -940,6 +965,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                             size: 16,
                             textColor: AppColors.primaryColor,
                             fontWeight: FontWeight.normal)),
+
                     // Visibility(
                     //   visible: Constants.isLogin,
                     //   child: ListTile(
@@ -1268,7 +1294,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           // ),
           backgroundColor: AppColors.defaultColor,
           shape: RoundedRectangleBorder(
-              side:  BorderSide(color: AppColors.secondaryColor, width: 1.0),
+              side: BorderSide(color: AppColors.secondaryColor, width: 1.0),
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           actions: [
             Visibility(

@@ -63,7 +63,7 @@ class _Otr_ScreenState extends State<Otr_Screen> {
         centerTitle: true,
       ),
       body: Container(
-        color: AppColors.textColor,
+        color: AppColors.defaultColor,
         // decoration: BoxDecoration(
         //   // color:
         //   image: DecorationImage(
@@ -236,9 +236,9 @@ class _Otr_ScreenState extends State<Otr_Screen> {
         size: 25,
       ),
       isDense: true,
-      contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+      contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       hintText: text,
-      hintStyle: TextStyle(fontSize: 14.0, color: AppColors.primaryColor),
+      hintStyle: const TextStyle(fontSize: 14.0, color: AppColors.primaryColor),
       fillColor: AppColors.defaultColor,
       filled: true,
       enabledBorder: const OutlineInputBorder(
@@ -300,16 +300,6 @@ class _Otr_ScreenState extends State<Otr_Screen> {
                     contactNo: _mobileController.text.trim(),
                     city: _cityController.text.trim()
                 ));
-            // var objVariable = otrRequestToJson(OtrRequest(
-            //     clientId: Constants.clientId,
-            //     name: _nameController.text,
-            //     firmName: _firmNameController.text,
-            //     city: _cityController.text,
-            //     contactNo: _mobileController.text));
-            // List<Map<String, dynamic>> jsonArray = [request.toJson()];
-            // Map<String, dynamic> jsonObject = jsonDecode(objVariable);
-
-            // List<Map<String, dynamic>> jsonArray = [jsonObject];
             services.submitOtr(otr).then((response) {
               if (response.code == 200) {
                 shared.setIsFirstTimeRegister(true);

@@ -70,7 +70,6 @@ class ContactUs_ScreenState extends State<ContactUs_Screen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _liverateProvider = Provider.of<LiveRateProvider>(context, listen: false);
     getLiveData();
@@ -651,14 +650,14 @@ class ContactUs_ScreenState extends State<ContactUs_Screen> {
       enabledBorder: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
         borderSide: BorderSide(
-          color: AppColors.primaryTextColor,
+          color: AppColors.primaryColor,
         ),
 
       ),
       focusedBorder: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
         borderSide: BorderSide(
-          color:  AppColors.primaryTextColor,
+          color:  AppColors.primaryColor,
         ),
       ),
     );

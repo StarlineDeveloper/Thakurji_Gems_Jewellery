@@ -290,7 +290,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void startTimer() {
-    timer = Timer(const Duration(seconds: 0), navigateUser);
+    timer = Timer(const Duration(seconds: 2), navigateUser);
   }
 
   void navigateUser() {

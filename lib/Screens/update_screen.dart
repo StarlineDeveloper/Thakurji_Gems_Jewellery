@@ -256,11 +256,12 @@ class Update_ScreenState extends State<Update_Screen> {
                     text: updateList.title!= null ? updateList.title!.trim() : 'N/A',
                     textColor: AppColors.primaryTextColor,
                     size: 16.0,
+                    noOfLines: 2,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 CustomText(
-                  text:  "${DateFormat('HH:mm a').format(updateList.modifiedDate!)}",
+                  text:  DateFormat('HH:mm a').format(updateList.modifiedDate!),
                   textColor: AppColors.secondaryColor,
                   size: 14.0,
                   fontWeight: FontWeight.bold,
@@ -274,6 +275,7 @@ class Update_ScreenState extends State<Update_Screen> {
                   : 'N/A',
               textColor: Colors.grey,
               size: 14.0,
+              noOfLines: 50,
               fontWeight: FontWeight.normal,
             ),
 
@@ -283,7 +285,7 @@ class Update_ScreenState extends State<Update_Screen> {
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomText(
-                  text:  "${DateFormat('dd').format(updateList.modifiedDate!)}",
+                  text:  DateFormat('dd').format(updateList.modifiedDate!),
                   textColor: Colors.grey,
                   size: 16.0,
                   fontWeight: FontWeight.normal,
