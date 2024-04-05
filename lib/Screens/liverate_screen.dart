@@ -1029,7 +1029,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> {
                             fontWeight: FontWeight.bold,
                             textColor: AppColors.primaryTextColor,
                             align: TextAlign.start,
-                            noOfLines: 2,
+                            // noOfLines: 2,
                           ),
                         ),
                       ),

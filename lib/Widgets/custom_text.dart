@@ -8,7 +8,7 @@ class CustomText extends StatelessWidget {
     required this.textColor,
     required this.fontWeight,
     this.align = TextAlign.start,
-    this.noOfLines,
+    // this.noOfLines,
 
 
     Key? key,
@@ -19,7 +19,7 @@ class CustomText extends StatelessWidget {
   final Color textColor;
   final FontWeight fontWeight;
   final TextAlign align;
-  final int? noOfLines;
+  // final int? noOfLines;
 
 
   @override
@@ -35,7 +35,7 @@ class CustomText extends StatelessWidget {
         text,
         textAlign: align,
         overflow: TextOverflow.ellipsis,
-        maxLines: noOfLines,
+        // maxLines: noOfLines,
         textScaler: const TextScaler.linear(1.0),
       ),
     );

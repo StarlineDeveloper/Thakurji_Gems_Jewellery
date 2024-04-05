@@ -256,7 +256,7 @@ class Update_ScreenState extends State<Update_Screen> {
                     text: updateList.title!= null ? updateList.title!.trim() : 'N/A',
                     textColor: AppColors.primaryTextColor,
                     size: 16.0,
-                    noOfLines: 2,
+                    // noOfLines: 2,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -275,7 +275,7 @@ class Update_ScreenState extends State<Update_Screen> {
                   : 'N/A',
               textColor: Colors.grey,
               size: 14.0,
-              noOfLines: 50,
+              // noOfLines: 50,
               fontWeight: FontWeight.normal,
             ),
 

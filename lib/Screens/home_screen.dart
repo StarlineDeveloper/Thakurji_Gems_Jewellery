@@ -542,7 +542,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     clientHeaderData.number7 != null &&
                         clientHeaderData.number7!.trim().isNotEmpty
                     ? showCallDialog()
-                    : Functions.showToast('Booking numbers are not available');
+                    : Functions.showToast('Booking numbers are not available.');
+
                 // showCallDialog();
               },
               onPanUpdate: (dragDetails) {
@@ -1225,7 +1226,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     align: TextAlign.center,
                     fontWeight: FontWeight.bold,
                     textColor: AppColors.primaryTextColor,
-                    noOfLines: 2,
+                    // noOfLines: 2,
                     size: 15.0,
                   ),
                 ),
@@ -1233,7 +1234,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   padding: const EdgeInsets.all(8.0),
                   child: CustomText(
                     text: body,
-                    noOfLines: 3,
+                    // noOfLines: 3,
                     align: TextAlign.center,
                     fontWeight: FontWeight.w500,
                     textColor: AppColors.textColor,
@@ -1294,249 +1295,233 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           // ),
           backgroundColor: AppColors.defaultColor,
           shape: RoundedRectangleBorder(
-              side: BorderSide(color: AppColors.secondaryColor, width: 1.0),
+              side: BorderSide(color: AppColors.primaryColor, width: 1.0),
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           actions: [
-            Visibility(
-              visible: (clientHeaderData.number1 != null &&
-                          clientHeaderData.number1!.trim().isNotEmpty) &&
-                      (clientHeaderData.number2 != null &&
-                          clientHeaderData.number2!.trim().isNotEmpty) &&
-                      (clientHeaderData.number3 != null &&
-                          clientHeaderData.number3!.trim().isNotEmpty) &&
-                      (clientHeaderData.number4 != null &&
-                          clientHeaderData.number4!.trim().isNotEmpty) &&
-                      (clientHeaderData.number5 != null &&
-                          clientHeaderData.number5!.trim().isNotEmpty) &&
-                      (clientHeaderData.number6 != null &&
-                          clientHeaderData.number6!.trim().isNotEmpty) &&
-                      (clientHeaderData.number7 != null &&
-                          clientHeaderData.number7!.trim().isNotEmpty)
-                  ? false
-                  : true,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 100,
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          decoration: BoxDecoration(
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 100,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50.0),
                             border: Border.all(color: Colors.transparent),
-                            gradient: AppColors.primaryGradient,
-                          ),
-                          padding: const EdgeInsets.all(7),
-                          margin: const EdgeInsets.all(10),
-                          child: Column(
-                            children: const <Widget>[
-                              Icon(
-                                Icons.mobile_screen_share_rounded,
-                                color: AppColors.defaultColor,
-                                size: 30.0,
-                              ),
-                            ],
+                            color: AppColors.primaryColor
+                          // gradient: AppColors.primaryGradient,
+                        ),
+                        padding: const EdgeInsets.all(7),
+                        margin: const EdgeInsets.all(10),
+                        child: Column(
+                          children: const <Widget>[
+                            Icon(
+                              Icons.mobile_screen_share_rounded,
+                              color: AppColors.defaultColor,
+                              size: 30.0,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        width: MediaQuery.of(context).size.width * 100,
+                        child: CustomText(
+                            text: 'BOOKING NUMBER',
+                            fontWeight: FontWeight.bold,
+                            textColor: AppColors.primaryColor,
+                            size: 16.0,
+                            align: TextAlign.center),
+                      ),
+                      // Divider(thickness: 1,color: AppColors.primaryColor,),
+                      Visibility(
+                        visible: clientHeaderData.number1 == null ||
+                            clientHeaderData.number1!.isEmpty
+                            ? false
+                            : true,
+                        child: GestureDetector(
+                          onTap: () {
+                            launchUrl(
+                              Uri(
+                                  scheme: 'tel',
+                                  path: Functions.alphaNum(
+                                      clientHeaderData.number1!)),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(2),
+                            margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            width: MediaQuery.of(context).size.width * 100,
+                            child: CustomText(
+                                text: clientHeaderData.number1 ?? '',
+                                fontWeight: FontWeight.normal,
+                                textColor: AppColors.textColor,
+                                size: 16.0,
+                                align: TextAlign.center),
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(2),
-                          width: MediaQuery.of(context).size.width * 100,
-                          child: CustomText(
-                              text: 'BOOKING NUMBER',
-                              fontWeight: FontWeight.bold,
-                              textColor: AppColors.secondaryColor,
-                              size: 16.0,
-                              align: TextAlign.center),
+                      ),
+                      Visibility(
+                        visible: clientHeaderData.number2 == null ||
+                            clientHeaderData.number2!.isEmpty
+                            ? false
+                            : true,
+                        child: GestureDetector(
+                          onTap: () {
+                            launchUrl(
+                              Uri(
+                                  scheme: 'tel',
+                                  path: Functions.alphaNum(
+                                      clientHeaderData.number2!)),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(2),
+                            margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            width: MediaQuery.of(context).size.width * 100,
+                            child: CustomText(
+                                text: clientHeaderData.number2 ?? '',
+                                fontWeight: FontWeight.normal,
+                                textColor: AppColors.textColor,
+                                size: 16.0,
+                                align: TextAlign.center),
+                          ),
                         ),
-                        Visibility(
-                          visible: clientHeaderData.number1 == null ||
-                                  clientHeaderData.number1!.isEmpty
-                              ? false
-                              : true,
-                          child: GestureDetector(
-                            onTap: () {
-                              launchUrl(
-                                Uri(
-                                    scheme: 'tel',
-                                    path: Functions.alphaNum(
-                                        clientHeaderData.number1!)),
-                              );
-                            },
-                            child: Container(
+                      ),
+                      Visibility(
+                        visible: clientHeaderData.number3 == null ||
+                            clientHeaderData.number3!.isEmpty
+                            ? false
+                            : true,
+                        child: GestureDetector(
+                          onTap: () {
+                            launchUrl(
+                              Uri(
+                                  scheme: 'tel',
+                                  path: Functions.alphaNum(
+                                      clientHeaderData.number3!)),
+                            );
+                          },
+                          child: Container(
                               padding: const EdgeInsets.all(2),
                               margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                               width: MediaQuery.of(context).size.width * 100,
                               child: CustomText(
-                                  text: clientHeaderData.number1 ?? '',
+                                  text: clientHeaderData.number3 ?? '',
                                   fontWeight: FontWeight.normal,
                                   textColor: AppColors.textColor,
                                   size: 16.0,
-                                  align: TextAlign.center),
-                            ),
-                          ),
+                                  align: TextAlign.center)),
                         ),
-                        Visibility(
-                          visible: clientHeaderData.number2 == null ||
-                                  clientHeaderData.number2!.isEmpty
-                              ? false
-                              : true,
-                          child: GestureDetector(
-                            onTap: () {
-                              launchUrl(
-                                Uri(
-                                    scheme: 'tel',
-                                    path: Functions.alphaNum(
-                                        clientHeaderData.number2!)),
-                              );
-                            },
-                            child: Container(
+                      ),
+                      Visibility(
+                        visible: clientHeaderData.number4 == null ||
+                            clientHeaderData.number4!.isEmpty
+                            ? false
+                            : true,
+                        child: GestureDetector(
+                          onTap: () {
+                            launchUrl(
+                              Uri(
+                                  scheme: 'tel',
+                                  path: Functions.alphaNum(
+                                      clientHeaderData.number4!)),
+                            );
+                          },
+                          child: Container(
                               padding: const EdgeInsets.all(2),
                               margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                               width: MediaQuery.of(context).size.width * 100,
                               child: CustomText(
-                                  text: clientHeaderData.number2 ?? '',
+                                  text: clientHeaderData.number4 ?? '',
                                   fontWeight: FontWeight.normal,
                                   textColor: AppColors.textColor,
                                   size: 16.0,
-                                  align: TextAlign.center),
-                            ),
-                          ),
+                                  align: TextAlign.center)),
                         ),
-                        Visibility(
-                          visible: clientHeaderData.number3 == null ||
-                                  clientHeaderData.number3!.isEmpty
-                              ? false
-                              : true,
-                          child: GestureDetector(
-                            onTap: () {
-                              launchUrl(
-                                Uri(
-                                    scheme: 'tel',
-                                    path: Functions.alphaNum(
-                                        clientHeaderData.number3!)),
-                              );
-                            },
-                            child: Container(
-                                padding: const EdgeInsets.all(2),
-                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                width: MediaQuery.of(context).size.width * 100,
-                                child: CustomText(
-                                    text: clientHeaderData.number3 ?? '',
-                                    fontWeight: FontWeight.normal,
-                                    textColor: AppColors.textColor,
-                                    size: 16.0,
-                                    align: TextAlign.center)),
-                          ),
+                      ),
+                      Visibility(
+                        visible: clientHeaderData.number5 == null ||
+                            clientHeaderData.number5!.isEmpty
+                            ? false
+                            : true,
+                        child: GestureDetector(
+                          onTap: () {
+                            launchUrl(
+                              Uri(
+                                  scheme: 'tel',
+                                  path: Functions.alphaNum(
+                                      clientHeaderData.number5!)),
+                            );
+                          },
+                          child: Container(
+                              padding: const EdgeInsets.all(2),
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              width: MediaQuery.of(context).size.width * 100,
+                              child: CustomText(
+                                  text: clientHeaderData.number5 ?? '',
+                                  fontWeight: FontWeight.normal,
+                                  textColor: AppColors.textColor,
+                                  size: 16.0,
+                                  align: TextAlign.center)),
                         ),
-                        Visibility(
-                          visible: clientHeaderData.number4 == null ||
-                                  clientHeaderData.number4!.isEmpty
-                              ? false
-                              : true,
-                          child: GestureDetector(
-                            onTap: () {
-                              launchUrl(
-                                Uri(
-                                    scheme: 'tel',
-                                    path: Functions.alphaNum(
-                                        clientHeaderData.number4!)),
-                              );
-                            },
-                            child: Container(
-                                padding: const EdgeInsets.all(2),
-                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                width: MediaQuery.of(context).size.width * 100,
-                                child: CustomText(
-                                    text: clientHeaderData.number4 ?? '',
-                                    fontWeight: FontWeight.normal,
-                                    textColor: AppColors.textColor,
-                                    size: 16.0,
-                                    align: TextAlign.center)),
-                          ),
+                      ),
+                      Visibility(
+                        visible: clientHeaderData.number6 == null ||
+                            clientHeaderData.number6!.isEmpty
+                            ? false
+                            : true,
+                        child: GestureDetector(
+                          onTap: () {
+                            launchUrl(
+                              Uri(
+                                  scheme: 'tel',
+                                  path: Functions.alphaNum(
+                                      clientHeaderData.number6!)),
+                            );
+                          },
+                          child: Container(
+                              padding: const EdgeInsets.all(2),
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              width: MediaQuery.of(context).size.width * 100,
+                              child: CustomText(
+                                  text: clientHeaderData.number6 ?? '',
+                                  fontWeight: FontWeight.normal,
+                                  textColor: AppColors.textColor,
+                                  size: 16.0,
+                                  align: TextAlign.center)),
                         ),
-                        Visibility(
-                          visible: clientHeaderData.number5 == null ||
-                                  clientHeaderData.number5!.isEmpty
-                              ? false
-                              : true,
-                          child: GestureDetector(
-                            onTap: () {
-                              launchUrl(
-                                Uri(
-                                    scheme: 'tel',
-                                    path: Functions.alphaNum(
-                                        clientHeaderData.number5!)),
-                              );
-                            },
-                            child: Container(
-                                padding: const EdgeInsets.all(2),
-                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                width: MediaQuery.of(context).size.width * 100,
-                                child: CustomText(
-                                    text: clientHeaderData.number5 ?? '',
-                                    fontWeight: FontWeight.normal,
-                                    textColor: AppColors.textColor,
-                                    size: 16.0,
-                                    align: TextAlign.center)),
-                          ),
+                      ),
+                      Visibility(
+                        visible: clientHeaderData.number7 == null ||
+                            clientHeaderData.number7!.isEmpty
+                            ? false
+                            : true,
+                        child: GestureDetector(
+                          onTap: () {
+                            launchUrl(
+                              Uri(
+                                  scheme: 'tel',
+                                  path: Functions.alphaNum(
+                                      clientHeaderData.number7!)),
+                            );
+                          },
+                          child: Container(
+                              padding: const EdgeInsets.all(2),
+                              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                              width: MediaQuery.of(context).size.width * 100,
+                              child: CustomText(
+                                  text: clientHeaderData.number7 ?? '',
+                                  fontWeight: FontWeight.normal,
+                                  textColor: AppColors.textColor,
+                                  size: 16.0,
+                                  align: TextAlign.center)),
                         ),
-                        Visibility(
-                          visible: clientHeaderData.number6 == null ||
-                                  clientHeaderData.number6!.isEmpty
-                              ? false
-                              : true,
-                          child: GestureDetector(
-                            onTap: () {
-                              launchUrl(
-                                Uri(
-                                    scheme: 'tel',
-                                    path: Functions.alphaNum(
-                                        clientHeaderData.number6!)),
-                              );
-                            },
-                            child: Container(
-                                padding: const EdgeInsets.all(2),
-                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                width: MediaQuery.of(context).size.width * 100,
-                                child: CustomText(
-                                    text: clientHeaderData.number6 ?? '',
-                                    fontWeight: FontWeight.normal,
-                                    textColor: AppColors.textColor,
-                                    size: 16.0,
-                                    align: TextAlign.center)),
-                          ),
-                        ),
-                        Visibility(
-                          visible: clientHeaderData.number7 == null ||
-                                  clientHeaderData.number7!.isEmpty
-                              ? false
-                              : true,
-                          child: GestureDetector(
-                            onTap: () {
-                              launchUrl(
-                                Uri(
-                                    scheme: 'tel',
-                                    path: Functions.alphaNum(
-                                        clientHeaderData.number7!)),
-                              );
-                            },
-                            child: Container(
-                                padding: const EdgeInsets.all(2),
-                                margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                width: MediaQuery.of(context).size.width * 100,
-                                child: CustomText(
-                                    text: clientHeaderData.number7 ?? '',
-                                    fontWeight: FontWeight.normal,
-                                    textColor: AppColors.textColor,
-                                    size: 16.0,
-                                    align: TextAlign.center)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ],
         );

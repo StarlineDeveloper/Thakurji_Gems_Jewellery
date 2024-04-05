@@ -228,7 +228,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       size: 15.0,
                       textColor: AppColors.defaultColor,
                       fontWeight: FontWeight.normal,
-                      noOfLines: 3,
+                      // noOfLines: 4,
                       align: TextAlign.center,
                     )),
                 Padding(
