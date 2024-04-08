@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           );
         },
-        title: 'Thakur ji Gems And Jewellery',
+        title: 'Thakurji Tiger',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // colorScheme: ColorScheme.fromSeed(seedColor: AppColor.secondaryColor),

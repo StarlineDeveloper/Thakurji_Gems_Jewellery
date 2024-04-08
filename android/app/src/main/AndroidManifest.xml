@@ -19,7 +19,7 @@
         android:name="${applicationName}"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="Thakur ji Gems &amp; Jewellery"
+        android:label="Thakurji Tiger"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

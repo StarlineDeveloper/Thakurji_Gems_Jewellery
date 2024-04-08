@@ -10506,21 +10506,21 @@ com.tekartik.sqflite.operation.Operation:
 com.tekartik.sqflite.operation.OperationRunnable
 com.tekartik.sqflite.operation.SqlErrorInfo:
     public void <init>()
-com.thakurjigemsandjewellery.BuildConfig
-com.thakurjigemsandjewellery.R$attr
-com.thakurjigemsandjewellery.R$color
-com.thakurjigemsandjewellery.R$dimen
-com.thakurjigemsandjewellery.R$drawable
-com.thakurjigemsandjewellery.R$id
-com.thakurjigemsandjewellery.R$integer
-com.thakurjigemsandjewellery.R$layout
-com.thakurjigemsandjewellery.R$mipmap
-com.thakurjigemsandjewellery.R$raw
-com.thakurjigemsandjewellery.R$string
-com.thakurjigemsandjewellery.R$style
-com.thakurjigemsandjewellery.R$styleable
-com.thakurjigemsandjewellery.R$xml
-com.thakurjigemsandjewellery.R
+com.thakurjitiger.BuildConfig
+com.thakurjitiger.R$attr
+com.thakurjitiger.R$color
+com.thakurjitiger.R$dimen
+com.thakurjitiger.R$drawable
+com.thakurjitiger.R$id
+com.thakurjitiger.R$integer
+com.thakurjitiger.R$layout
+com.thakurjitiger.R$mipmap
+com.thakurjitiger.R$raw
+com.thakurjitiger.R$string
+com.thakurjitiger.R$style
+com.thakurjitiger.R$styleable
+com.thakurjitiger.R$xml
+com.thakurjitiger.R
 com.vanethos.notification_permissions.BuildConfig
 com.vanethos.notification_permissions.MethodCallHandlerImpl:
     private static final java.lang.String PERMISSION_DENIED

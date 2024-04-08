@@ -144,7 +144,7 @@
 -keep class com.google.firebase.iid.FirebaseInstanceIdReceiver { <init>(); }
 -keep class com.google.firebase.messaging.FirebaseMessagingService { <init>(); }
 -keep class com.google.firebase.provider.FirebaseInitProvider { <init>(); }
--keep class com.thakurjigemsandjewellery.MainActivity { <init>(); }
+-keep class com.thakurjitiger.MainActivity { <init>(); }
 -keep class dev.fluttercommunity.plus.share.ShareFileProvider { <init>(); }
 -keep class dev.fluttercommunity.plus.share.SharePlusPendingIntent { <init>(); }
 -keep class io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService { <init>(); }

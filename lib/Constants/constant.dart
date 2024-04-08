@@ -17,10 +17,10 @@ class Constants {
 
   //Add playstore link
   static const String androidAppStoreRedirect =
-      "https://play.google.com/store/apps/details?id=com.thakurjigemsandjewellery&pli=1";
+      "https://play.google.com/store/apps/details?id=com.thakurjitiger&pli=1";
 
   //Add android package name
-  static const String androidAppRateAndUpdate = "com.thakurjigemsandjewellery";
+  static const String androidAppRateAndUpdate = "com.thakurjitiger";
 
   //Add ios app id from app store(while creating app)
   static const String iOSAppId = "6479629729";
@@ -36,7 +36,7 @@ class Constants {
   static const String subscriberTopic = 'thakurjigems';
 
   // Add static
-  static String alertAndCnfTitle = 'Thakurji Gems And Jewels';
+  static String alertAndCnfTitle = 'Thakurji Tiger';
 
   //Headers
   static const Map<String, String> headers = {
@@ -55,5 +55,5 @@ class Constants {
   static String token = '';
   static String? fcmToken = '';
   static String loginName = '';
-  static  String tradeType = '';
+  static String tradeType = '';
 }
